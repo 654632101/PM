@@ -1,0 +1,14 @@
+CREATE USER king_table IDENTIFIED BY password
+alter user king_table identified by king;
+  GRANT CONNECT TO king_table;
+  GRANT DBA TO king_table;
+  GRANT RESOURCE TO king_table;
+  ALTER USER king_table DEFAULT ROLE ALL;
+  -- 7 System Privileges for king_table 
+  GRANT INSERT ANY TABLE TO king_table;
+  GRANT CREATE TABLE TO king_table;
+  GRANT UNLIMITED TABLESPACE TO king_table;
+  GRANT SELECT ANY SEQUENCE TO king_table;
+  GRANT SELECT ANY TABLE TO king_table;
+  GRANT DELETE ANY TABLE TO king_table;
+  GRANT UPDATE ANY TABLE TO king_table;

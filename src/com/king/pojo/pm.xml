@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Pm">
+
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<typeAlias alias="Pm" type="com.king.pojo.PmInfo" />
+
+	<resultMap id="PmValue" class="Pm">
+		<result property="id" column="id" />
+		<result property="rq" column="rq" />
+		<result property="type" column="type" />
+		<result property="value" column="value" />
+	</resultMap>
+
+	<!-- select to_char(rq, 'yyyy-mm') as rq , sum(decode(type, 'PM2.5细颗粒物', 
+		value)), sum(decode(type, 'PM10可吸入颗粒物', value)), sum(decode(type, 'NO2二氧化氮', 
+		value)) from PM_JBXXB group by rq order by rq -->
+	<select id="query" resultMap="PmValue">
+		select rq,type,value ,id
+		from PM_JBXXB order by rq 
+	</select>
+
+	<insert id="inpm" parameterClass="Pm">
+		insert into PM_JBXXB (
+			id,rq,type,value
+			)
+		values (
+			#id#,#rq#,#type#,#value#
+		)
+  </insert>
+</sqlMap>

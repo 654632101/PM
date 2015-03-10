@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<include file="struts-default.xml" />
+	<package name="" namespace="/" extends="struts-default">
+		<action name="login" class="loginAction" method="login">
+			<result name="login">/WEB-INF/jsp/Welcome.jsp</result>
+			<result name="input">/WEB-INF/jsp/Login.jsp</result>
+		</action>
+		<action name="top1">
+			<result>/WEB-INF/jsp/seccon.jsp</result>
+		</action>
+		<action name="top">
+			<result>/WEB-INF/jsp/seccon.html</result>
+		</action>
+		<action name="home">
+			<result>/WEB-INF/jsp/index.jsp</result>
+		</action>
+		
+		
+		<action name="goto" class="queryAction" method="gotoUrl">
+			<result name ="SUCC">/WEB-INF/jsp/seccon.jsp</result>
+		</action>
+	</package>
+	
+	
+	<!-- 配置json格式的action的配置 -->
+	<package name="json" namespace="/test" extends="json-default">
+		<action name="query" class="queryAction" method="gatQuery">
+				<result type="json">
+                <!-- 此处将reslut的值返回给客户端，root的值对应要返回的值的属性result
+                      	注意：root为固定写法，否则不会把result的值返回给客户端 -->
+                <param name="root">name</param>
+            
+			</result>
+		</action>
+	</package>
+</struts>
